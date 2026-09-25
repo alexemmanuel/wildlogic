@@ -782,6 +782,27 @@ export default function App() {
     addLog('SYSTEM', 'NEW EXPEDITION PROTOCOL INITIALIZED.', 'info');
   };
 
+  // Weather Cycle Trigger (for manual shift or test simulation)
+  const handleCycleWeather = () => {
+    const weathers: WeatherType[] = [
+      'clear_skies',
+      'acid_monsoon',
+      'solar_flare',
+      'bioluminescent_fog',
+      'emp_dust_storm',
+    ];
+    const currentIndex = weathers.indexOf(gameState.weather);
+    const nextWeather = weathers[(currentIndex + 1) % weathers.length];
+
+    sound.playAlarm();
+    setGameState((prev) => ({
+      ...prev,
+      weather: nextWeather,
+      weatherCountdown: 3,
+    }));
+    addLog('HAZARD', `ATMOSPHERIC FLUX: Weather cycled to ${nextWeather.replace('_', ' ').toUpperCase()}!`, 'alert');
+  };
+
   // Buy Card Handler
   const handleBuyCard = (card: LogicCard, cost: number) => {
     setGameState((prev) => ({
@@ -808,6 +829,7 @@ export default function App() {
         turnNumber={gameState.turnNumber}
         currentMode={gameState.mode}
         onChangeMode={(mode) => setGameState((prev) => ({ ...prev, mode }))}
+        onCycleWeather={handleCycleWeather}
         isMuted={isMuted}
         onToggleMute={handleToggleMute}
       />
@@ -873,6 +895,7 @@ export default function App() {
               selectedCard={gameState.selectedCard}
               floatingTexts={gameState.floatingTexts}
               biome={gameState.biome}
+              weather={gameState.weather}
               onTileClick={handleTileClick}
               onPlayerMove={handlePlayerMove}
               onCompanionMove={handleCompanionMove}

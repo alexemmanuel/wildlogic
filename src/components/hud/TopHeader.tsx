@@ -30,6 +30,7 @@ interface TopHeaderProps {
   turnNumber: number;
   currentMode: 'grid' | 'expedition_map' | 'deck' | 'codex';
   onChangeMode: (mode: 'grid' | 'expedition_map' | 'deck' | 'codex') => void;
+  onCycleWeather?: () => void;
   isMuted: boolean;
   onToggleMute: () => void;
 }
@@ -43,6 +44,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   turnNumber,
   currentMode,
   onChangeMode,
+  onCycleWeather,
   isMuted,
   onToggleMute,
 }) => {
@@ -120,16 +122,17 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           </div>
 
           {/* Dynamic Weather Hazard Widget */}
-          <div
-            className={`hidden md:flex items-center gap-2 px-3 py-1 rounded-lg border text-xs font-mono ${weatherInfo.color}`}
-            title={weatherInfo.desc}
+          <button
+            onClick={onCycleWeather}
+            className={`hidden md:flex items-center gap-2 px-3 py-1 rounded-lg border text-xs font-mono transition-all cursor-pointer hover:scale-102 active:scale-98 ${weatherInfo.color}`}
+            title={`${weatherInfo.desc} • Click to cycle atmospheric phenomenon`}
           >
             {weatherInfo.icon}
             <span className="font-bold">{weatherInfo.name}</span>
             <span className="text-[10px] text-slate-400 border-l border-slate-700 pl-2">
               SHIFT IN: <strong className="text-white">{weatherCountdown}T</strong>
             </span>
-          </div>
+          </button>
         </div>
 
         {/* Navigation Tabs */}

@@ -8,7 +8,9 @@ import {
   LogicCard,
   FloatingText,
   BiomeType,
+  WeatherType,
 } from '../../types/game';
+import { WeatherCanvasOverlay } from './WeatherCanvasOverlay';
 import { 
   Zap, 
   Shield, 
@@ -34,6 +36,7 @@ interface TacticalGridProps {
   selectedCard: LogicCard | null;
   floatingTexts: FloatingText[];
   biome: BiomeType;
+  weather: WeatherType;
   onTileClick: (x: number, y: number) => void;
   onPlayerMove: (targetX: number, targetY: number) => void;
   onCompanionMove: (targetX: number, targetY: number) => void;
@@ -50,6 +53,7 @@ export const TacticalGrid: React.FC<TacticalGridProps> = ({
   selectedCard,
   floatingTexts,
   biome,
+  weather,
   onTileClick,
   onPlayerMove,
   onCompanionMove,
@@ -221,7 +225,8 @@ export const TacticalGrid: React.FC<TacticalGridProps> = ({
           </div>
 
           {/* Main 8x8 Grid Canvas */}
-          <div className="grid grid-cols-8 gap-1.5 sm:gap-2">
+          <div className="relative">
+            <div className="grid grid-cols-8 gap-1.5 sm:gap-2">
             {grid.map((row, y) =>
               row.map((tile, x) => {
                 const isPlayerHere = player.x === x && player.y === y;
@@ -472,6 +477,10 @@ export const TacticalGrid: React.FC<TacticalGridProps> = ({
                 );
               })
             )}
+            </div>
+
+            {/* Canvas-based Weather Overlay directly over the grid */}
+            <WeatherCanvasOverlay weather={weather} />
           </div>
         </div>
 
