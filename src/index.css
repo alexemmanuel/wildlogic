@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Chakra Petch', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Outfit', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #040907;
+    color: #e2e8f0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom Tactical Cyber Glows */
+.cyber-glow-emerald {
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25), inset 0 0 10px rgba(16, 185, 129, 0.15);
+}
+
+.cyber-glow-amber {
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25), inset 0 0 10px rgba(245, 158, 11, 0.15);
+}
+
+.cyber-glow-red {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.35), inset 0 0 10px rgba(239, 68, 68, 0.15);
+}
+
+.cyber-glow-cyan {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25), inset 0 0 10px rgba(6, 182, 212, 0.15);
+}
+
+/* Scanline and holographic grid effect */
+.bg-scanlines {
+  background-image: linear-gradient(
+    rgba(16, 185, 129, 0.03) 50%, 
+    rgba(0, 0, 0, 0.2) 50%
+  );
+  background-size: 100% 4px;
+}
+
+.bg-tactical-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #040907;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
