@@ -2,5 +2,7 @@
   "name": "Wild Logic: Tactical Survival Grid",
   "description": "A roguelike tactical survival grid strategy game set in a shifting futuristic techno-wilderness with mutating environments and predator AI.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
